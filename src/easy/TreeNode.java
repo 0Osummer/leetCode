@@ -1,5 +1,9 @@
 package easy;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
 public class TreeNode {
 	int val;
 	TreeNode left;
@@ -70,5 +74,40 @@ public class TreeNode {
         TreeNode other = invertTree(root);
         return isSameTree(root, other);
     }
+	
+	/**
+	 * 层级遍历二叉树
+	 * @param root
+	 * @return
+	 */
+	public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<TreeNode> list = new ArrayList<>();
+        if(root == null) return result;
+        list.add(root);
+        int i = 1;
+        int j = 0;
+        while(!list.isEmpty()){
+        	List<Integer> x = new ArrayList<>();
+        	int nums_level = 0;
+        	for(j=0;j<i;j++){
+        		TreeNode temp = list.get(0);
+        		list.remove(0);
+        		x.add(temp.val);
+        		if(temp.left!= null){
+        			nums_level++;
+        			list.add(temp.left);
+        		}
+        		if(temp.right!= null){
+        			nums_level++;
+        			list.add(temp.right);
+        		}
+        	}
+        	result.add(0, x);
+        	i=nums_level;
+        }
+        return result;
+    }
+	
 	
 }

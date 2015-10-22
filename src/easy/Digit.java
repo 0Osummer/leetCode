@@ -264,4 +264,24 @@ public class Digit {
     	}
     	return length;
     }
+    /**
+     * 有两种思路：
+     * 1.先转成数字，计算后，再转为数组 O(n) 存在问题，可能会超出int或者long的上限
+     * 2.一位一位的计算  最坏O(n)
+     * @param digits
+     * @return
+     */
+    public int[] plusOne(int[] digits) {
+        for(int i = digits.length-1; i >= 0; i--){
+        	digits[i]++;
+        	if(digits[i] <10) return digits;
+        	else digits[i] = 0;
+        }
+        int[] results = new int[digits.length+1];
+        results[0]=1;
+        for(int i=1; i <= digits.length; i++){
+        	results[i] = digits[i-1];
+        }
+        return results;
+    }
 }

@@ -244,4 +244,24 @@ public class Digit {
     	if(n <= 0) return false;
     	else return (n&(n-1)) == 0;
     }
+    /**
+     * Given a sorted array, remove the duplicates in place 
+     * such that each element appear only once and return the new length
+     * @param nums
+     * @return
+     */
+    public int removeDuplicates(int[] nums){
+    	if(nums== null || nums.length == 0) return 0;
+    	int length = nums.length;
+    	for(int i = length -1; i > 0; i--){
+    		if(nums[i] == nums[i-1] ){
+    			//数组向前挪动
+    			for(int j = i;j < length-1;j++){
+    				nums[j] = nums[j+1];
+    			}
+    			length--;
+    		}
+    	}
+    	return length;
+    }
 }
